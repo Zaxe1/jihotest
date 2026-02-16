@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>{{ 'Join Us' if mode == 'signup' else 'Welcome Back' }}</h2>
+            <p>{{ 'Create an account to start your journey' if mode == 'signup' else 'Login to access your account' }}
+            </p>
+        </div>
+
+        <form method="POST" class="auth-form">
+            {% if mode == 'signup' %}
+            <div class="form-group">
+                <input type="text" placeholder="Full Name" required>
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                <input type="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="btn-primary block">{{ 'Sign Up' if mode == 'signup' else 'Login' }}</button>
+        </form>
+
+        <div class="auth-footer">
+            {% if mode == 'signup' %}
+            <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+            {% else %}
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
